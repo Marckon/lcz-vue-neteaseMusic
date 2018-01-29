@@ -50,7 +50,7 @@
 
 <style scoped>
   .mymusic {
-    position: fixed;
+    position: absolute;
     top: 50px;
     width:100%;
   }

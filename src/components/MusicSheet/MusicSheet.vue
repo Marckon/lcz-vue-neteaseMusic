@@ -12,11 +12,11 @@
     <!--sheet ends-->
     <!--list begins-->
     <transition-group name="verticalSlide">
-      <div v-for="(list,listIndex) in data_item.detail" v-show="showMS" :key="list.name+listIndex" class="content">
-        <img :src="list.info[0].img_url" alt="" class="sheetimg">
+      <div v-for="(list,listIndex) in musicLists" v-show="showMS" :key="list.name+listIndex" class="content">
+        <img :src="list.coverImgUrl" alt="" class="sheetimg">
         <div class="detail">
           <p class="name">{{list.name}}</p>
-          <p class="count">{{list.count}}首歌曲</p>
+          <p class="count">{{list.trackCount}}首歌曲</p>
         </div>
         <i class="setting icon-list-circle" @click="setMusicList(list)"></i>
       </div>
@@ -30,11 +30,13 @@
     name: "music-sheet",
     data() {
       return {
+        musicLists: [],
         data_item: {},
         showMS: true,
       }
     },
     props: {
+      //item传过来的是data.json里的sheets中的元素
       item: {
         type: Object,
         required: true
@@ -79,7 +81,23 @@
       }
     },
     mounted() {
+      let vm = this
       this.data_item = this.item
+      //建立歌单类别下的所有歌单对象数组
+      let musicLists = []
+      let detail = this.item.detail
+      Array.prototype.map.call(detail, function (value) {
+        vm.$http({
+          method: 'get',
+          url: `/api?${value.url}`,
+        }).then((res) => {
+          musicLists.push(res.data.result)
+          // console.log(res.data.result)
+        }).catch((res) => {
+          console.log('error')
+        })
+      })
+      this.musicLists = musicLists
     }
   }
 </script>
