@@ -1,24 +1,24 @@
 <template>
   <div class="musicsheet">
     <!--sheet begins-->
-    <div class="title">
+    <div class="title" @click="toggleShowMS">
       <div class="detail">
-        <i class="toggle icon-down" @click="toggleShowMS" ref="toggleicon"></i>
+        <i class="toggle icon-down"  ref="toggleicon"></i>
         <span class="name">{{data_item.name}}</span>
         <span class="count">({{data_item.count}})</span>
       </div>
-      <i class="setting icon-setting" @click="setMusicSheet"></i>
+      <i class="setting icon-setting" @click.stop="setMusicSheet"></i>
     </div>
     <!--sheet ends-->
     <!--list begins-->
     <transition-group name="verticalSlide">
-      <div v-for="(list,listIndex) in musicLists" v-show="showMS" :key="list.name+listIndex" class="content">
+      <div v-for="(list,listIndex) in musicLists" v-show="showMS" :key="list.name+listIndex" class="content" @click="toggleSongSheetShow">
         <img :src="list.coverImgUrl" alt="" class="sheetimg">
         <div class="detail">
           <p class="name">{{list.name}}</p>
           <p class="count">{{list.trackCount}}首歌曲</p>
         </div>
-        <i class="setting icon-list-circle" @click="setMusicList(list)"></i>
+        <i class="setting icon-list-circle" @click.stop="setMusicList(list)"></i>
       </div>
     </transition-group>
     <!--list ends-->
@@ -78,6 +78,9 @@
           ]
         }
         this.$emit('setML', menuListItems)
+      },
+      toggleSongSheetShow(){
+        this.$store.commit('toggleShow','songSheetShow')
       }
     },
     mounted() {

@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <v-header @toggleSideBarShow="toggleSideBarShow"></v-header>
-    <side-bar :info="info" :sideBarShow="sideBarShow" @toggleSideBarShow="toggleSideBarShow"></side-bar>
+    <v-header></v-header>
+    <side-bar :info="info"></side-bar>
     <my-music></my-music>
     <bottom-bar></bottom-bar>
+    <song-sheet></song-sheet>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
   import sideBar from './components/sidebar/SideBar'
   import myMusic from './components/mymusic/mymusic'
   import BottomBar from './components/BottomBar/BottomBar'
+  import SongSheet from './components/SongSheet/SongSheet'
 
   export default {
     name: 'app',
@@ -19,19 +21,15 @@
       'v-header': myheader,
       'side-bar': sideBar,
       myMusic:myMusic,
-      BottomBar
+      BottomBar,
+      SongSheet
     },
     data(){
       return {
         info:{},
-        sideBarShow:false
       }
     },
     methods:{
-      //后期可优化，这个方法使父子组件耦合度过高，需要在dom中调用过多次
-      toggleSideBarShow:function () {
-        this.sideBarShow=!this.sideBarShow
-      }
     },
     created() {
       let localAPI = '../static/data.json'

@@ -59,6 +59,11 @@
 
   export default {
     name: "side-bar",
+    computed:{
+      sideBarShow(){
+        return this.$store.getters.getShowState('sideBarShow')
+      }
+    },
     components: {
       sideList: SideList
     },
@@ -66,30 +71,13 @@
       info: {
         type: Object,
         required: true,
-      },
-      sideBarShow: {
-        type: Boolean,
-        required: true
       }
     },
     methods: {
       toggleSideBarShow: function () {
-        this.$emit('toggleSideBarShow')
+       this.$store.commit('toggleShow','sideBarShow')
       },
     },
-    /*  data() {
-        return {
-          bg: {
-            background: `url(${this.info.bg}) no-repeat`,
-            backgroundSize: `100% 100%`
-          }
-        }
-      },
-      watch: {
-        bg(v) {
-          bg = v
-        }
-      },*/
     created() {
 
     }

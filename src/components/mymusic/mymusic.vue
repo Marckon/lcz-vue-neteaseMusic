@@ -4,8 +4,9 @@
     <type-list name="最近播放 " iconinfo="icon-zuijinplay" count="100"></type-list>
     <type-list name="我的电台 " iconinfo="icon-diantai" count="0"></type-list>
     <type-list name="我的收藏 " iconinfo="icon-collect" count="212"></type-list>
-    <music-sheet v-for="(item, index) in msItems" :item="item" :index="index" :key="item.name" @setMS="setMS" @setML="setML"></music-sheet>
-    <menu-list :menuListItems="mLI" :menuListShow="menuListShow" @toggleMenuListShow="toggleMenuListShow"></menu-list>
+    <music-sheet v-for="(item, index) in msItems" :item="item" :index="index" :key="item.name" @setMS="setMS"
+                 @setML="setML"></music-sheet>
+    <menu-list :menuListItems="mLI"></menu-list>
   </div>
 </template>
 
@@ -16,29 +17,25 @@
 
   export default {
     name: "mymusic",
-    data(){
+    data() {
       return {
-        mLI:{},
-        menuListShow:false
+        mLI: {},
       }
     },
-    computed:{
-      msItems(){
+    computed: {
+      msItems() {
         return this.$store.getters.getMusicAllList.sheets
       }
     },
-    methods:{
-      setMS(menuListItems){
-        this.menuListShow=!this.menuListShow
-          this.mLI=menuListItems
+    methods: {
+      setMS(menuListItems) {
+        this.mLI = menuListItems
+        this.$store.commit('toggleShow', 'menuListShow')
       },
-      setML(menuListItems){
-        this.menuListShow=!this.menuListShow
-        this.mLI=menuListItems
+      setML(menuListItems) {
+        this.mLI = menuListItems
+        this.$store.commit('toggleShow', 'menuListShow')
       },
-      toggleMenuListShow(){
-        this.menuListShow=!this.menuListShow
-      }
     },
     components: {
       typeList: TypeList,
@@ -52,6 +49,6 @@
   .mymusic {
     position: absolute;
     top: 50px;
-    width:100%;
+    width: 100%;
   }
 </style>

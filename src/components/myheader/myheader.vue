@@ -17,7 +17,7 @@
         name: "myheader",
       methods:{
           toggleSideBarShow:function () {
-           this.$emit('toggleSideBarShow')
+           this.$store.commit('toggleShow','sideBarShow')
           }
       }
     }

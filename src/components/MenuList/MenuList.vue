@@ -24,19 +24,18 @@
             type:Object,
             required:true
           },
-          menuListShow:{
-            type:Boolean,
-            required:true
-          }
         },
       computed:{
           options(){
             return this.menuListItems.options
-          }
+          },
+        menuListShow(){
+            return this.$store.getters.getShowState('menuListShow')
+        }
       },
       methods:{
           toggleMenuListShow(){
-           this.$emit('toggleMenuListShow')
+           this.$store.commit('toggleShow','menuListShow')
           }
       },
       components:{
