@@ -4,7 +4,6 @@
     <side-bar :info="info"></side-bar>
     <my-music></my-music>
     <bottom-bar></bottom-bar>
-    <song-sheet></song-sheet>
   </div>
 </template>
 
@@ -13,8 +12,6 @@
   import sideBar from './components/sidebar/SideBar'
   import myMusic from './components/mymusic/mymusic'
   import BottomBar from './components/BottomBar/BottomBar'
-  import SongSheet from './components/SongSheet/SongSheet'
-
   export default {
     name: 'app',
     components: {
@@ -22,7 +19,6 @@
       'side-bar': sideBar,
       myMusic:myMusic,
       BottomBar,
-      SongSheet
     },
     data(){
       return {
@@ -50,13 +46,11 @@
 
 <style>
   @import "../static/font-icon/style.css";
-
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -65,7 +59,6 @@
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
-
   .fade-enter-to, .fade-leave-active {
     transition: opacity 0.3s;
   }

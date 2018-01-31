@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Audio from './modules/audio'
 import showManagement from './modules/showManagement'
+import songSheets from './modules/songSheets'
 
 Vue.use(Vuex)
 
@@ -21,7 +22,8 @@ const store = new Vuex.Store({
   },
   modules: {
     Audio,
-    showManagement
+    showManagement,
+    songSheets
   }
 })
 

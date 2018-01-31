@@ -12,7 +12,7 @@
     <!--sheet ends-->
     <!--list begins-->
     <transition-group name="verticalSlide">
-      <div v-for="(list,listIndex) in musicLists" v-show="showMS" :key="list.name+listIndex" class="content" @click="toggleSongSheetShow">
+      <div v-for="(list,listIndex) in musicLists" v-show="showMS" :key="list.name+listIndex" class="content" @click="toggleSongSheetShow(list.id)">
         <img :src="list.coverImgUrl" alt="" class="sheetimg">
         <div class="detail">
           <p class="name">{{list.name}}</p>
@@ -79,8 +79,9 @@
         }
         this.$emit('setML', menuListItems)
       },
-      toggleSongSheetShow(){
+      toggleSongSheetShow(idToShow){
         this.$store.commit('toggleShow','songSheetShow')
+        this.$emit('toggleSongSheetShow',idToShow)
       }
     },
     mounted() {
@@ -95,6 +96,7 @@
           url: `/api?${value.url}`,
         }).then((res) => {
           musicLists.push(res.data.result)
+          vm.$store.commit('setSongSheets',musicLists)
           // console.log(res.data.result)
         }).catch((res) => {
           console.log('error')
@@ -111,7 +113,6 @@
     width: 100%;
     background: #f3f3f3
   }
-
   .title {
     display: flex;
     justify-content: space-between;
@@ -121,15 +122,12 @@
     font-size: 0.9rem;
     height: 30px;
   }
-
   .title .toggle {
     font-size: 1rem;
     margin-right: 15px;
     transition: all 0.5s;
     display: inline-block;
-
   }
-
   .content {
     display: flex;
     height: 60px;
@@ -139,7 +137,6 @@
     justify-content: space-between;
     padding: 0 20px 0 0;
   }
-
   .content .detail {
     text-indent: 1rem;
     height: 100%;
@@ -149,26 +146,21 @@
     align-content: space-around;
     border-bottom: #ccc solid 1px;
   }
-
   .content .detail p {
     width: 100%;
   }
-
   .content .detail .count {
     font-size: 0.8rem;
   }
-
   .sheetimg {
     width: 50px;
     height: 50px;
     margin: 5px;
   }
-
   .verticalSlide-enter, .verticalSlide-leave-to {
     height: 0;
     opacity: 0;
   }
-
   .verticalSlide-leave-active, .verticalSlide-enter-active {
     transition: all 0.5s;
   }
