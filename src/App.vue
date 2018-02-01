@@ -36,7 +36,7 @@
         this.info=res.data.user
         this.$store.dispatch('set_AllInfo', res.data)
         this.$store.dispatch('set_MusicAllList',res.data.music)
-        console.log(res.data)
+        // console.log(res.data)
       }).catch((res)=>{
         console.log('error')
       })

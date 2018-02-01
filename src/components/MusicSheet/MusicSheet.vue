@@ -1,3 +1,4 @@
+<!--歌单类-->
 <template>
   <div class="musicsheet">
     <!--sheet begins-->
@@ -86,23 +87,21 @@
     },
     mounted() {
       let vm = this
-      this.data_item = this.item
-      //建立歌单类别下的所有歌单对象数组
-      let musicLists = []
-      let detail = this.item.detail
-      Array.prototype.map.call(detail, function (value) {
+      vm.data_item = vm.item
+      let musicLists=[]
+      let detail = vm.item.detail //获得sheetes.detail 数组
+      detail.map(function (value) {
         vm.$http({
           method: 'get',
           url: `/api?${value.url}`,
         }).then((res) => {
           musicLists.push(res.data.result)
-          vm.$store.commit('setSongSheets',musicLists)
-          // console.log(res.data.result)
+          vm.$store.commit('setSongSheets',res.data.result)
         }).catch((res) => {
           console.log('error')
         })
       })
-      this.musicLists = musicLists
+      vm.musicLists = musicLists
     }
   }
 </script>

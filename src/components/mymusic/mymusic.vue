@@ -7,7 +7,7 @@
     <music-sheet v-for="(item, index) in msItems" :item="item" :index="index" :key="item.name" @setMS="setMS"
                  @setML="setML" @toggleSongSheetShow="toggleSongSheetShow"></music-sheet>
     <menu-list :menuListItems="mLI"></menu-list>
-    <song-sheet :songSheetId="idToShow" v-if="songSheetShow"></song-sheet>
+    <song-sheet :songSheetId="idToShow" v-show="songSheetShow"></song-sheet>
   </div>
 </template>
 

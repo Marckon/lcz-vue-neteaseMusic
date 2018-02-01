@@ -4,15 +4,7 @@ const songSheets = {
   },
   mutations: {
     setSongSheets(state, data) {
-      if(data instanceof  Array){
-        data.map(function (item) {
-          state.songSheets.push(item)
-        })
-      }
-
-    else{
        state.songSheets.push(data)
-     }
     }
   },
   actions: {
@@ -21,7 +13,9 @@ const songSheets = {
     }
   },
   getters: {
-    getSongSheets: (state) => state.songSheets
+    getSongSheets: (state) => {
+        return  state.songSheets
+    }
   }
 }
 

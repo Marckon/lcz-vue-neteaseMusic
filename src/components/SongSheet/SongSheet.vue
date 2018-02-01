@@ -69,29 +69,41 @@
     },
     computed: {
       songSheet() {
-          const songSheets = this.$store.getters.getSongSheets
-          const vm = this
-          let res
+       let songSheets = this.$store.getters.getSongSheets
+        const vm = this
+        let res
           res = songSheets.filter(function (item) {
             return item.id === vm.songSheetId
           })[0]
+        if(res===undefined){
+         res={
+           coverImgUrl:'',
+           name:'',
+           creator:{
+             nickname:'',
+             avatarUrl:''
+           }
+         }
+        }
+        // console.log(res)
           return res
       },
       songSheetShow() {
         return this.$store.getters.getShowState('songSheetShow')
       }
     },
-    mounted() {
-      const topArea = this.$refs.topArea
-      const bgurl = this.songSheet.coverImgUrl
-      const topbg = this.$refs.topbg
-      topArea.style.cssText = `
+    watch: {
+     songSheet:function (newv,oldv) {
+       const topArea = this.$refs.topArea
+       const bgurl = this.songSheet.coverImgUrl
+       const topbg = this.$refs.topbg
+       topArea.style.cssText = `
       background:url(${bgurl}) no-repeat;
       background-position:center center;
       background-size:100% 600%;
       overflow:hidden;
       `
-      topbg.style.cssText = `
+       topbg.style.cssText = `
       position:absolute;
       width:inherit;
       height:inherit;
@@ -103,6 +115,7 @@
       box-shadow: 0 0 10px 10px #555;
       z-index:-1;
       `
+     }
     },
     methods: {
       toggleSongSheetShow() {
@@ -113,19 +126,20 @@
 </script>
 
 <style scoped>
-  .slideLeft-enter, .slideLeft-leave-to{
+  .slideLeft-enter, .slideLeft-leave-to {
     transform: translateX(-100%)
   }
 
-  .slideLeft-enter-active, .slideLeft-leave-active{
+  .slideLeft-enter-active, .slideLeft-leave-active {
     transition: all 0.5s;
   }
+
   .songsheet {
     z-index: 10;
     position: fixed;
     top: 0;
-    left:0;
-    right:0;
+    left: 0;
+    right: 0;
     bottom: 0;
     width: 100%;
     color: #fff;
@@ -144,22 +158,26 @@
   .banner {
     display: flex;
     flex-wrap: wrap;
-    height:100px;
-    align-items:center;
+    height: 100px;
+    align-items: center;
   }
-  .bannertexts{
+
+  .bannertexts {
     display: flex;
-    height:inherit;
+    height: inherit;
     flex-wrap: wrap;
     align-items: center;
   }
-  .sheetname{
-    width:100%;
+
+  .sheetname {
+    width: 100%;
   }
-  .userdetail{
+
+  .userdetail {
     display: flex;
     align-items: center;
   }
+
   .useravatar {
     width: 50px;
     height: 50px;
@@ -167,39 +185,45 @@
     margin-right: 20px;
   }
 
-  .btnzone{
-    width:100%;
+  .btnzone {
+    width: 100%;
     display: flex;
     position: absolute;
-    bottom:10px;
+    bottom: 10px;
     justify-content: space-around;
   }
-  .sheetbtn{
+
+  .sheetbtn {
     display: flex;
     flex-wrap: wrap;
   }
-  .sheetbtn i{
-    width:100%;
+
+  .sheetbtn i {
+    width: 100%;
     text-align: center;
   }
-  .sheetbtn span{
+
+  .sheetbtn span {
     width: 100%;
     text-align: center;
     font-size: 0.7rem;
   }
+
   .songlistzone {
     color: #000;
-    position:relative;
+    position: relative;
   }
-.topmenu{
-  font-size: 0.7rem;
-  height:30px;
-  display: flex;
-  padding: 0 10px 0 10px;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: #ccc solid 1px;
-}
+
+  .topmenu {
+    font-size: 0.7rem;
+    height: 30px;
+    display: flex;
+    padding: 0 10px 0 10px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: #ccc solid 1px;
+  }
+
   .songsheetheader {
     height: 50px;
     display: flex;
@@ -207,35 +231,41 @@
     align-items: center;
     font-size: 1.2rem;
   }
-  .song{
+
+  .song {
     display: flex;
-    width:100%;
-    height:50px;
+    width: 100%;
+    height: 50px;
     border-bottom: #e8e8e8 solid 1px;
-    align-items:  center;
+    align-items: center;
   }
-  .song .detail{
+
+  .song .detail {
     display: flex;
     flex-wrap: wrap;
-    width:100%;
-    height:inherit;
-   align-content: center;
+    width: 100%;
+    height: inherit;
+    align-content: center;
   }
-  .song .detail p{
-    width:100%;
+
+  .song .detail p {
+    width: 100%;
   }
-  .artist{
+
+  .artist {
     font-size: 0.7rem;
-    color:#bababa;
+    color: #bababa;
   }
-  .song .songnumber{
-    width:50px;
-    height:50px;
+
+  .song .songnumber {
+    width: 50px;
+    height: 50px;
     line-height: 50px;
     text-align: center;
-    color:#bababa;
+    color: #bababa;
     border-bottom: #fff solid 1px;
   }
+
   .songsheetheader i {
     margin: 0 10px 0 10px;
   }
