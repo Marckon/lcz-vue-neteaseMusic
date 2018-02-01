@@ -131,7 +131,7 @@
   }
 
   .slideLeft-enter-active, .slideLeft-leave-active {
-    transition: all 0.5s;
+    transition: all cubic-bezier(.03,.38,0,.97) 0.3s;
   }
 
   .songsheet {
