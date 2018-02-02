@@ -60,5 +60,7 @@
     position: absolute;
     top: 50px;
     width: 100%;
+    bottom: 60px;
+    overflow-y: scroll;
   }
 </style>

@@ -87,7 +87,7 @@
 <style scoped>
   .side-mask {
     position: fixed;
-    z-index: 10;
+    z-index: 20;
     background-color: rgba(0, 0, 0, 0.5);
     top: 0;
     bottom: 0;
@@ -98,7 +98,7 @@
   .menu-content {
     width: 286px;
     position: fixed;
-    z-index: 10;
+    z-index: 20;
     top: 0;
     left: 0;
     bottom: 0;
