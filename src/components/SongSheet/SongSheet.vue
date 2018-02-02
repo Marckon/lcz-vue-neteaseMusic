@@ -44,7 +44,7 @@
           <span class="playall icon-play">播放全部</span>
           <span class="multiselect icon-menu">多选</span>
         </div>
-        <div class="songlist" v-for="(item,index) in songSheet.tracks">
+        <div class="songlist" v-for="(item,index) in songSheet.tracks" :key="item+index" @click="setCurrentSong(item)">
           <div class="song">
             <span class="songnumber">{{index+1}}</span>
             <div class="detail">
@@ -120,6 +120,9 @@
     methods: {
       toggleSongSheetShow() {
         this.$store.commit('toggleShow', 'songSheetShow')
+      },
+      setCurrentSong(songObj){
+        this.$store.commit('setCurrentSongInfo',songObj)
       }
     }
   }
