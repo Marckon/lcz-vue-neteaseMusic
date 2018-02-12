@@ -3,6 +3,7 @@
     <v-header></v-header>
     <side-bar :info="info"></side-bar>
     <my-music></my-music>
+    <music-detail></music-detail>
     <bottom-bar></bottom-bar>
   </div>
 </template>
@@ -12,6 +13,7 @@
   import sideBar from './components/sidebar/SideBar'
   import myMusic from './components/mymusic/mymusic'
   import BottomBar from './components/BottomBar/BottomBar'
+  import MusicDetail from './components/MusicDetail/MusicDetail.vue'
   export default {
     name: 'app',
     components: {
@@ -19,6 +21,7 @@
       'side-bar': sideBar,
       myMusic:myMusic,
       BottomBar,
+      MusicDetail
     },
     data(){
       return {

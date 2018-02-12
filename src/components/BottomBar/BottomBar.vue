@@ -1,5 +1,5 @@
 <template>
-<div class="bottom-bar" v-if="currentSong">
+<div class="bottom-bar" v-if="currentSong" @click="toggleMusicDetailShow">
   <img :src="currentSong.album.picUrl" alt="" class="albumBg">
   <div class="songDetail">
     <p class="songName">{{currentSong.name}}</p>
@@ -25,6 +25,11 @@
             })
           return res.join(',')
         }
+      },
+      methods:{
+          toggleMusicDetailShow() {
+            this.$store.commit('toggleShow','musicDetailShow')
+          }
       }
     }
 </script>
