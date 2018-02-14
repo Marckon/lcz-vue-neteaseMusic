@@ -1,6 +1,7 @@
 const currentSong={
   state:{
-    currentSongInfo:null
+    currentSongInfo:null,
+    isPlaying:false,
   },
   mutations:{
     setCurrentSongInfo(state,songObj){
