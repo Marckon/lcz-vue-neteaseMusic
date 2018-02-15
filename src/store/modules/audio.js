@@ -2,7 +2,7 @@ const audio = {
   state: {
     musicAllList: [],
     playType: 'lbxh',
-    playTypeIndex: 0
+    playTypeIndex: 0,
   },
   mutations: {
     setMusicAllList(state, obj) {
