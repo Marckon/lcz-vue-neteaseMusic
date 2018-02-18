@@ -116,7 +116,7 @@
     },
     watch: {
       currentSong(newV, oldV) {
-        console.log(this.$store.getters.getShowState('musicDetailShow'))
+//        console.log(this.$store.getters.getShowState('musicDetailShow'))
         const wholeBgEle = this.$refs.wholeBg
         wholeBgEle.style.cssText = `
       background: url("${this.currentSong.album.blurPicUrl}") no-repeat center;
@@ -233,6 +233,7 @@
     justify-content: space-around;
     color: #fff;
     align-items: center;
+    font-size: 1.2rem;
   }
   .swith-line{
     height:1px;

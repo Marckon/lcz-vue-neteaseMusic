@@ -5,7 +5,7 @@
     <p class="songName">{{currentSong.name}}</p>
     <p class="singer">{{artist}}</p>
   </div>
-  <i class="playBtn icon-play"></i>
+  <i :class="isPlaying? 'icon-pause' : 'icon-play'" class="playBtn" @click.stop="playPause"></i>
   <i class="menuBtn icon-list-music"></i>
 </div>
 </template>
@@ -24,12 +24,18 @@
               res.push(artist.name)
             })
           return res.join(',')
+        },
+        isPlaying(){
+          return this.$store.getters.getPlayState
         }
       },
       methods:{
           toggleMusicDetailShow() {
             this.$store.commit('toggleShow','musicDetailShow')
-          }
+          },
+        playPause(){
+            this.$store.commit('setPlayPause')
+        }
       }
     }
 </script>
