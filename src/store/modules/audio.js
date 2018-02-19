@@ -5,6 +5,9 @@ const audio = {
     playTypeIndex: 0,
     audioEle:{},
     isPlaying:false,
+    musicDuration:0,
+    musicCurrentTime:0,
+    musicCanPlay:false,
   },
   mutations: {
     setMusicAllList(state, obj) {
@@ -17,6 +20,9 @@ const audio = {
         //若有audio元素，根据当前的play状态控制音频的播放
         state.isPlaying?state.audioEle.play():state.audioEle.pause()
       }
+    },
+    setMusicCanPlay(state){
+      state.musicCanPlay=true
     },
     setPlayType(state, playTypeIndex) {
       /*
@@ -43,7 +49,10 @@ const audio = {
       }
     },
     setAudioEle(state,obj){
-      state.audioEle=obj;
+      state.audioEle=obj
+    },
+    setMusicDuration(state,audioEle){
+      state.musicDuration=audioEle.duration
     }
   },
   actions: {
@@ -58,7 +67,10 @@ const audio = {
     getMusicAllList: state => state.musicAllList,
     getPlayType: state => state.playType,
     getPlayTypeIndex: state => state.playTypeIndex,
-    getPlayState:state=>state.isPlaying
+    getPlayState:state=>state.isPlaying,
+    getMusicDuration:state=>state.musicDuration,
+    getMusicCurrentTime:state=>state.musicCurrentTime,
+    getMusicCanPlay:state=>state.musicCanPlay,
   }
 }
 

@@ -34,7 +34,7 @@
       <transition name="fade">
         <div class="lrc-wrapper">
           <div class="volume-range">
-            <range></range>
+            <range rangeType="volume"></range>
           </div>
           <div class="lrc">
 
@@ -43,7 +43,7 @@
       </transition>
 
       <div class="content-footer">
-        <range></range>
+        <range rangeType="progress"></range>
         <div class="music-control">
           <i class="play-type" :class="musicPlayType" @click.stop="setPlayType"></i>
           <i class="prev icon-prevdetail"></i>
@@ -234,6 +234,7 @@
     color: #fff;
     align-items: center;
     font-size: 1.2rem;
+    text-shadow: 0 0 5px #000;
   }
   .swith-line{
     height:1px;
