@@ -192,7 +192,7 @@
     flex-wrap: wrap;
     position: fixed;
     bottom: 20px;
-    height: 60px;
+    height:20vh;
     width: 100%;
   }
 
@@ -217,7 +217,7 @@
     /*border: solid #000 1px;*/
     top:70px;
     width:inherit;
-    height:60%;
+    height:60vh;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;

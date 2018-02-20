@@ -22,6 +22,7 @@
     },
     computed:{
       musicDuration(){
+        //返回的是秒数
         return this.$store.getters.getMusicDuration
       },
       musicCurrentTime(){
@@ -43,5 +44,23 @@
 </script>
 
 <style scoped>
-
+.range{
+  margin: 0 auto;
+  width:80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  text-shadow: 0 0 5px #000;
+}
+  .duration-bar{
+    width:80%;
+    height:2px;
+    background-color: #fff;
+    box-shadow: 0 0 5px #000;
+  }
+  .span-left,.span-right{
+    width:10%;
+    text-align: center;
+  }
 </style>
