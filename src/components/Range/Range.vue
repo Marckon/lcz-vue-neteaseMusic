@@ -3,10 +3,11 @@
     <span class="span-left" v-show="rangeType==='progress'">{{timeFormat(musicCurrentTime)}}</span>
     <i class="rangeIcon icon-volume-medium" v-show="rangeType==='volume'"></i>
     <div class="duration-bar">
-      <span class="currentProgress"></span>
-      <span class="ball"></span>
+      <span class="currentProgress" ref="currentProgress"></span>
+      <span class="ball" ref="ball"></span>
     </div>
-    <span class="span-right">{{timeFormat(musicDuration)}}</span>
+    <span class="span-right" v-if="musicDuration!==0">{{timeFormat(musicDuration)}}</span>
+    <span class="icon-music" v-else ></span>
   </div>
 </template>
 
@@ -27,6 +28,16 @@
       },
       musicCurrentTime(){
         return this.$store.getters.getMusicCurrentTime
+      }
+    },
+    watch:{
+      musicCurrentTime(nv,ov){
+        //改变进度条
+        let barWidth=this.musicDuration
+        let currentWidth=Math.floor(nv*100/barWidth)
+        this.$refs.currentProgress.style.cssText=`
+        width:${currentWidth}%
+        `
       }
     },
     methods:{
@@ -62,5 +73,21 @@
   .span-left,.span-right{
     width:10%;
     text-align: center;
+  }
+  .ball{
+    width:16px;
+    height:16px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 5px #000;
+    float: left;
+    position: relative;
+    top:-7px;
+    cursor: pointer;
+  }
+  .currentProgress{
+    height:2px;
+    background-color: #e74c3c;
+    float: left;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <audio :src="currentSongUrl" v-if="currentSong" ref="audio" @canplay="musicCanPlay"></audio>
+    <audio :src="currentSongUrl" v-if="currentSong" ref="audio" @canplay="musicCanPlay" @timeupdate="musicTimeUpdate"></audio>
     <v-header></v-header>
     <side-bar :info="info"></side-bar>
     <my-music></my-music>
@@ -36,6 +36,10 @@
       musicCanPlay(){
         this.$store.commit('setMusicCanPlay')
         this.$store.commit('setMusicDuration',this.$refs.audio)
+        this.$store.commit('setMusicCurrentTime',this.$refs.audio)
+      },
+      musicTimeUpdate(){
+        this.$store.commit('setMusicCurrentTime',this.$refs.audio)
       }
     },
     watch: {},

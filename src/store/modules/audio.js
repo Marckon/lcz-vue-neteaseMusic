@@ -53,6 +53,9 @@ const audio = {
     },
     setMusicDuration(state,audioEle){
       state.musicDuration=audioEle.duration
+    },
+    setMusicCurrentTime(state,audioEle){
+      state.musicCurrentTime=audioEle.currentTime
     }
   },
   actions: {
