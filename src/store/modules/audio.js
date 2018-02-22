@@ -15,7 +15,7 @@ const audio = {
     },
     setPlayPause(state){
       state.isPlaying=!state.isPlaying
-      console.log(state.audioEle)
+      // console.log(state.audioEle)
       if(state.audioEle){
         //若有audio元素，根据当前的play状态控制音频的播放
         state.isPlaying?state.audioEle.play():state.audioEle.pause()
@@ -74,6 +74,7 @@ const audio = {
     getMusicDuration:state=>state.musicDuration,
     getMusicCurrentTime:state=>state.musicCurrentTime,
     getMusicCanPlay:state=>state.musicCanPlay,
+    getAudioEle:state=>state.audioEle
   }
 }
 

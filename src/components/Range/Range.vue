@@ -2,9 +2,9 @@
   <div class="range">
     <span class="span-left" v-show="rangeType==='progress'">{{timeFormat(musicCurrentTime)}}</span>
     <i class="rangeIcon icon-volume-medium" v-show="rangeType==='volume'"></i>
-    <div class="duration-bar">
+    <div class="duration-bar" @click="setRange($event)" ref="durationBar">
       <span class="currentProgress" ref="currentProgress"></span>
-      <span class="ball" ref="ball"></span>
+      <span class="ball" ref="ball" @mousemove="changeRange"></span>
     </div>
     <span class="span-right" v-if="musicDuration!==0">{{timeFormat(musicDuration)}}</span>
     <span class="icon-music" v-else ></span>
@@ -32,12 +32,14 @@
     },
     watch:{
       musicCurrentTime(nv,ov){
-        //改变进度条
-        let barWidth=this.musicDuration
-        let currentWidth=Math.floor(nv*100/barWidth)
-        this.$refs.currentProgress.style.cssText=`
+        if(this.rangeType==='progress'){
+          //改变进度条
+          let barWidth=this.musicDuration
+          let currentWidth=Math.floor(nv*100/barWidth)
+          this.$refs.currentProgress.style.cssText=`
         width:${currentWidth}%
         `
+        }
       }
     },
     methods:{
@@ -49,6 +51,23 @@
         sec<10?sec='0'+sec:sec=sec
         res=`${min}:${sec}`
         return res
+      },
+      changeRange(){
+
+      },
+      setRange(event){
+        const duraBarLeft=this.$refs.durationBar.offsetLeft
+        const duraBarWidth=this.$refs.durationBar.offsetWidth
+        let setPos=event.clientX
+        let percentage=(setPos-duraBarLeft)/duraBarWidth
+        /*console.log('durbarleft'+' :'+duraBarLeft)
+        console.log('setPos'+' :'+setPos)
+        console.log('durbarwidth'+' :'+duraBarWidth)*/
+        if(this.rangeType==='progress'){
+          const maxValue=this.musicDuration
+          const res=Math.floor(maxValue*percentage)
+          this.$store.getters.getAudioEle.currentTime=res
+        }
       }
     }
   }
@@ -69,6 +88,7 @@
     height:2px;
     background-color: #fff;
     box-shadow: 0 0 5px #000;
+    cursor: pointer;
   }
   .span-left,.span-right{
     width:10%;
