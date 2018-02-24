@@ -1,10 +1,12 @@
 <template>
-  <div class="range">
+  <div class="range" @mousemove.prevent.stop="changeRange($event)" @mouseup="canDrag=false">
     <span class="span-left" v-show="rangeType==='progress'">{{timeFormat(musicCurrentTime)}}</span>
     <i class="rangeIcon icon-volume-medium" v-show="rangeType==='volume'"></i>
-    <div class="duration-bar" @click="setRange($event)" ref="durationBar">
-      <span class="currentProgress" ref="currentProgress"></span>
-      <span class="ball" ref="ball" @mousemove="changeRange"></span>
+    <div class="duration-area" @click.stop="setRange($event)" @mouseleave="canDrag=false" >
+      <div class="duration-bar"  ref="durationBar">
+        <span class="currentProgress" ref="currentProgress"></span>
+        <span class="ball" ref="ball" @mousedown.stop="canDrag=true" ></span>
+      </div>
     </div>
     <span class="span-right" v-if="musicDuration!==0">{{timeFormat(musicDuration)}}</span>
     <span class="icon-music" v-else ></span>
@@ -19,6 +21,11 @@
       rangeType:{
         type:String,
         default:'progress'
+      }
+    },
+    data() {
+      return {
+        canDrag:false
       }
     },
     computed:{
@@ -52,7 +59,25 @@
         res=`${min}:${sec}`
         return res
       },
-      changeRange(){
+      changeRange(event){
+        if(this.canDrag){
+          let setPos=event.clientX
+          const duraBarLeft=this.$refs.durationBar.offsetLeft
+          const duraBarWidth=this.$refs.durationBar.offsetWidth
+          let currentWidth=Math.floor((setPos-duraBarLeft)*100/duraBarWidth)
+          this.$refs.currentProgress.style.cssText=`
+        width:${currentWidth}%
+        `
+         /* const duraBarLeft=this.$refs.durationBar.offsetLeft
+          const duraBarWidth=this.$refs.durationBar.offsetWidth
+          let setPos=event.clientX
+          let percentage=(setPos-duraBarLeft)/duraBarWidth
+          if(this.rangeType==='progress'){
+            const maxValue=this.musicDuration
+            const res=Math.floor(maxValue*percentage)
+            this.$store.getters.getAudioEle.currentTime=res
+          }*/
+        }
 
       },
       setRange(event){
@@ -84,7 +109,7 @@
   text-shadow: 0 0 5px #000;
 }
   .duration-bar{
-    width:80%;
+    width:100%;
     height:2px;
     background-color: #fff;
     box-shadow: 0 0 5px #000;
@@ -103,11 +128,17 @@
     float: left;
     position: relative;
     top:-7px;
-    cursor: pointer;
   }
   .currentProgress{
     height:2px;
     background-color: #e74c3c;
     float: left;
+  }
+  .duration-area{
+    cursor: pointer;
+    width:80%;
+    height:100%;
+    display: flex;
+    align-items: center;
   }
 </style>

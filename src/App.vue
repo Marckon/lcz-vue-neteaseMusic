@@ -5,7 +5,7 @@
     <side-bar :info="info"></side-bar>
     <my-music></my-music>
     <music-detail></music-detail>
-    <bottom-bar></bottom-bar>
+    <bottom-bar v-if="currentSong"></bottom-bar>
   </div>
 </template>
 
