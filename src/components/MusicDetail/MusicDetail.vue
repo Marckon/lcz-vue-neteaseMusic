@@ -15,10 +15,10 @@
         <div class="content-wrapper" v-show="cdSheetShow">
           <div class="cd">
             <div class="swith-line">
-              <div class="trigger"></div>
+              <div class="trigger" :style="isPlaying?'transform:rotate(0deg)':'transform:rotate(-40deg)'"></div>
             </div>
             <div class="cd-content">
-              <div class="cd-bg">
+              <div class="cd-bg" :class="isPlaying?'':'cd-animation-stop'">
                 <img :src="currentSong.album.blurPicUrl" alt="" class="album-img">
               </div>
             </div>
@@ -250,6 +250,9 @@
     top:-15px;
     height:140px;
     width:90px;
+    transform-origin: 18% 12%;
+    transition: linear 0.5s;
+    z-index: 11;
   }
   .cd-content{
     height:100%;
@@ -257,6 +260,16 @@
     justify-content: space-around;
     align-items: center;
   }
+  @keyframes cdRotation {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   .cd-bg{
     background: url('../../../static/images/cd.png') no-repeat;
     background-size: 100% 100%;
@@ -265,7 +278,13 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    animation: cdRotation 15s infinite linear;
   }
+
+  .cd-animation-stop{
+    animation-play-state: paused;
+  }
+
   .cd-content img{
     width:70%;
     border-radius: 50%;
