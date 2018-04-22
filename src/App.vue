@@ -3,8 +3,10 @@
     <audio :src="currentSongUrl" v-if="currentSong" ref="audio" @canplay="musicCanPlay" @timeupdate="musicTimeUpdate"></audio>
     <v-header></v-header>
     <side-bar :info="info"></side-bar>
-    <my-music></my-music>
     <music-detail></music-detail>
+    <router-view name="mymusic"></router-view>
+    <router-view name="findmusic"></router-view>
+    <router-view name="community"></router-view>
     <bottom-bar v-if="currentSong"></bottom-bar>
   </div>
 </template>
