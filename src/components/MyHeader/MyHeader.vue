@@ -14,7 +14,7 @@
 
 <script>
     export default {
-        name: "myheader",
+        name: "MyHeader",
       methods:{
           toggleSideBarShow:function () {
            this.$store.commit('toggleShow','sideBarShow')

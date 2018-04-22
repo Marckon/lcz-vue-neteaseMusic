@@ -100,7 +100,7 @@
        topArea.style.cssText = `
       background:url(${bgurl}) no-repeat;
       background-position:center center;
-      background-size:100% 600%;
+      background-size:100%;
       overflow:hidden;
       `
        topbg.style.cssText = `
@@ -109,7 +109,7 @@
       height:inherit;
       top:0;
       background:url(${bgurl}) no-repeat;
-      background-size:100% 600%;
+      background-size:100%;
       background-position:center center;
       filter:blur(10px);
       box-shadow: 0 0 10px 10px #555;
@@ -160,7 +160,6 @@
 
   .banner {
     display: flex;
-    flex-wrap: wrap;
     height: 100px;
     align-items: center;
   }

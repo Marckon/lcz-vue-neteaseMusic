@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import mymusic from '../components/mymusic/mymusic'
-import findmusic from '../components/findmusic/findmusic'
-import community from '../components/community/community'
+import mymusic from '../components/MyMusic/MyMusic'
+import findmusic from '../components/FindMusic/FindMusic'
+import community from '../components/Community/Community'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/mymusic',
+      path: '/MyMusic',
       components: {
         mymusic: mymusic
       }
     },
     {
-      path: '/findmusic',
+      path: '/FindMusic',
       components: {
         findmusic: findmusic
       }
@@ -27,7 +27,7 @@ export default new Router({
       }
     },
     {
-      path: '/community',
+      path: '/Community',
       components: {
         community: community
       }

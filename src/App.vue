@@ -12,9 +12,9 @@
 </template>
 
 <script>
-  import myheader from './components/myheader/myheader'
-  import sideBar from './components/sidebar/SideBar'
-  import myMusic from './components/mymusic/mymusic'
+  import myheader from './components/MyHeader/MyHeader'
+  import sideBar from './components/SideBar/SideBar'
+  import myMusic from './components/MyMusic/MyMusic'
   import BottomBar from './components/BottomBar/BottomBar'
   import MusicDetail from './components/MusicDetail/MusicDetail.vue'
   import currentSong from "./store/modules/currentSong";
